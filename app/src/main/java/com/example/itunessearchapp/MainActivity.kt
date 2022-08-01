@@ -38,14 +38,11 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("my_sp", MODE_PRIVATE)
         sharedPreferencesEditor =sharedPreferences.edit()
 
-        val lastVisit: String? = sharedPreferences.getString("last_visit_date",null)
-        if(lastVisit!=null){
-            lastVisitTextView.text = "Your last visit was $lastVisit"
-            lastVisitTextView.visibility = VISIBLE
-        }
+
 
         initRecyclerView()
         initViewModel()
+        showLastVisit()
 
     }
 
@@ -55,7 +52,21 @@ class MainActivity : AppCompatActivity() {
         Log.i("mytag:","setLastVisit")
     }
 
-    //set the last visit date of the app
+
+    /*showLastVisit() retrieves the last_visit_date value from the shared preferences in order
+      display it on the lastVisitTextView
+    */
+    private fun showLastVisit(){
+        val lastVisit: String? = sharedPreferences.getString("last_visit_date",null)
+        if(lastVisit!=null){
+            lastVisitTextView.text = "Your last visit was $lastVisit"
+            lastVisitTextView.visibility = VISIBLE
+        }
+    }
+
+    /*setLastVisit gets an instance of the current date and saves it as a string to be retrieved from shared
+       preferences once the user reopens the app
+    */
     private fun setLastVisit() {
         val c: Calendar = Calendar.getInstance()
         val dateFormat:DateFormat = DateFormat.getDateInstance(DateFormat.FULL)
@@ -69,7 +80,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    //Initialize the RecyclerView
+    //Initializes the RecyclerView with its layout manager, adapter, and onItemCLick listener
     private fun initRecyclerView(){
         trackListRecyclerView.layoutManager = LinearLayoutManager(this)
         recyclerAdapter = TrackListAdapter(this)
@@ -84,7 +95,6 @@ class MainActivity : AppCompatActivity() {
                 it.artworkUrl100)
 
             intent.putExtra("track_details",trackDetails)
-
             startActivity(intent)
         }
     }

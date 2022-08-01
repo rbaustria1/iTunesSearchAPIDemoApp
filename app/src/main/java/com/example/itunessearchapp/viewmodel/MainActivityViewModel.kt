@@ -17,12 +17,14 @@ class MainActivityViewModel: ViewModel() {
         liveDataList = MutableLiveData()
     }
 
+
+    /**/
     fun getLiveDataObserver(): MutableLiveData<List<Track>>{
         return liveDataList
     }
 
 
-/*makeAPICall() function initiates the http request*/
+    /*makeAPICall() function initiates the http request*/
     fun makeAPICall(){
         val retroInstance = RetroInstance.getRetroInstance()
         val retroServiceInterface = retroInstance.create(RetroServiceInterface::class.java)

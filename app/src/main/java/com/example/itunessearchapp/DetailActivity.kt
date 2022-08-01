@@ -36,6 +36,10 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
+    /*cleanData() simply checks the values for null and replaces them with an empty
+    * string so that the TextViews will not display the word 'null'
+    */
+
     private fun cleanData() {
         if(trackDetails.trackName == null){
             trackDetails.trackName = ""
@@ -55,6 +59,10 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
+
+    /*initDetails() simply initializes the views with the data that they will be displaying
+    *
+    * */
     private fun initDetails() {
         val currencySymbol: String? = Currency.getInstance(trackDetails!!.currency.toString()).symbol
         trackNameTextView.text = trackDetails.trackName

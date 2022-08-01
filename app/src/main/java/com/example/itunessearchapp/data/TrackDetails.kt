@@ -3,6 +3,8 @@ package com.example.itunessearchapp.data
 import android.os.Parcel
 import android.os.Parcelable
 
+//class TrackDetails was used as a Parcelable in order to pass and retrieve it through intents
+
 data class TrackDetails(
     var trackName: String?,
     var trackPrice:String?, var currency:String?, var genre: String?, var longDescription: String?, var artWorkUrl: String?): Parcelable {
